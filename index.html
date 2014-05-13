@@ -54,12 +54,8 @@
         <h1>When Do I Age Out?</h1>
       </div>
 
-      <!--<div class="input-group" id='entry'>
-        <span class="input-group-addon">Birthdate</span>
-        <input type="text" class="form-control" placeholder="mm/dd/yyyy">
-      </div>-->
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-4 col-lg-offset-4">
           <div class="input-group">
             <span class="input-group-addon">Birthdate</span>
             <input type="text" class="form-control" placeholder='mm/dd/yyyy' id='entry'>
@@ -69,7 +65,7 @@
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
       </div><!-- /.row -->
-
+      
       <div class="starter-template">
         <p class="lead" id="result"></p>
       </div>
@@ -93,9 +89,9 @@
       dciAgeOutYear = calculateDCIAgeOutYear(month, day, year)
       wgiAgeOutYear = calculateWGIAgeOutYear(month, day, year)
       boldDCIYear = "<b>"+String(dciAgeOutYear) + "</b>"
-      boldWGIYear = "<b>"+String(wgiAgeOutYear) + "</b>"
-      dciInfo = "You age out of DCI in " + boldDCIYear + "."
-      wgiInfo = "You age out of WGI in " + boldWGIYear + "."
+      boldWGIYear = "<b>"+String(wgiAgeOutYear -1) + '-' + String(wgiAgeOutYear) + "</b>"
+      dciInfo = "Your last summer of DCI is " + boldDCIYear + "."
+      wgiInfo = "Your last winter of WGI is " + boldWGIYear + "."
       document.getElementById('result').innerHTML = dciInfo + "<p>" + wgiInfo
     }
 
