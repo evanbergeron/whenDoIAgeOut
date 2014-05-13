@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>When Do I Age Out?</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="starter-template.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="rules.html">Rules</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>When Do I Age Out?</h1>
+      </div>
+
+      <!--<div class="input-group" id='entry'>
+        <span class="input-group-addon">Birthdate</span>
+        <input type="text" class="form-control" placeholder="mm/dd/yyyy">
+      </div>-->
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="input-group">
+            <span class="input-group-addon">Birthdate</span>
+            <input type="text" class="form-control" placeholder='mm/dd/yyyy' id='entry'>
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button" onclick="calculateAgeOut()">Go!</button>
+            </span>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+      </div><!-- /.row -->
+
+      <div class="starter-template">
+        <p class="lead" id="result"></p>
+      </div>
+
+
+    </div><!-- /.container -->
+
+    <script>
+    function calculateAgeOut() {
+      //var entryItem = document.getElementById('entry')
+      var entryItem = $('#entry').val()
+      var monthDayYear = entryItem.split("/")
+      // Make sure user entered stuff in correctly
+      if (monthDayYear.length != 3) {
+        document.getElementById('result').innerHTML = 'Invalid input.';
+        return;
+      }
+      var month = Number(monthDayYear[0])
+      var day = Number(monthDayYear[1])
+      var year = Number(monthDayYear[2])
+      dciAgeOutYear = calculateDCIAgeOutYear(month, day, year)
+      wgiAgeOutYear = calculateWGIAgeOutYear(month, day, year)
+      boldDCIYear = "<b>"+String(dciAgeOutYear) + "</b>"
+      boldWGIYear = "<b>"+String(wgiAgeOutYear) + "</b>"
+      dciInfo = "You age out of DCI in " + boldDCIYear + "."
+      wgiInfo = "You age out of WGI in " + boldWGIYear + "."
+      document.getElementById('result').innerHTML = dciInfo + "<p>" + wgiInfo
+    }
+
+    function calculateDCIAgeOutYear(month, day, year) {
+      var maxAge = 21
+      var bonusYear = Number(month >= 6)
+      var currentTime = new Date();
+      var currentYear = Number(currentTime.getFullYear())
+      var ageOutYear = year + maxAge + bonusYear
+      return ageOutYear
+    }
+
+    function calculateWGIAgeOutYear(month, day, year) {
+      var maxAge = 22
+      var bonusYear = Number(month >= 4)
+      var currentTime = new Date();
+      var currentYear = Number(currentTime.getFullYear())
+      var ageOutYear = year + maxAge + bonusYear
+      return ageOutYear
+    }
+    </script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+
+  </body>
+</html>
